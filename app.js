@@ -1,28 +1,26 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
 const { Pool } = require('pg');
  
 const pool = new Pool({
   user: 'fajar',
   host: 'localhost',
-  database: 'mydb', //yang ada di postgre
-  password: 'secretpassword',
-  port: 3211,
-})
- 
-pool.query('SELECT NOW()', (err, res) => {
-  console.log(err, res)
-  pool.end()
+  database: 'datadb', //yang ada di postgre
+  password: '12345',
+  port: 5432,
 })
 
-var indexRouter = require('./routes/index'); //immadiately call
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index'); //immadiately call
+const usersRouter = require('./routes/users')(pool);
+const addRouter = require('./routes/add')(pool);
+const editRouter = require('./routes/edit')(pool);
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -36,6 +34,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/add', addRouter);
+app.use('/edit', editRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

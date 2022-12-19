@@ -6,3 +6,26 @@ body {
 a {
   color: #00B7FF;
 }
+
+.container {
+  padding-top: 0.5rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.containers {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-top: auto;
+  margin-bottom: auto;
+  border: 1px solid rgb(85, 80, 80);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.btn {
+  border-radius: 1rem;
+} 
