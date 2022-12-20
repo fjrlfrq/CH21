@@ -15,10 +15,8 @@ const pool = new Pool({
   port: 5432,
 })
 
-const indexRouter = require('./routes/index'); //immadiately call
-const usersRouter = require('./routes/users')(pool);
-const addRouter = require('./routes/add')(pool);
-const editRouter = require('./routes/edit')(pool);
+const indexRouter = require('./routes/index')(pool); //immediately call
+const usersRouter = require('./routes/users')
 
 const app = express();
 
@@ -34,8 +32,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/add', addRouter);
-app.use('/edit', editRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -26,6 +26,17 @@ a {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
+input[type=checkbox] ,
+.form-control ,
+.pagination {
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2);
+}
+
 .btn {
   border-radius: 1rem;
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2);
 } 
+
+th {
+  text-align: center;
+}
